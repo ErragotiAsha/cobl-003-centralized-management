@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repo
+      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
@@ -22,26 +22,32 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.7.0  # or your preferred version
+          terraform_version: 1.7.0
 
-      # Step 3: Terraform Init
+      # Step 3: Configure AWS credentials (no region secret)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # hardcoded region
+
+      # Step 4: Terraform Init
       - name: Terraform Init
         working-directory: terraform
         run: terraform init
 
-      # Step 4: Terraform Plan
+      # Step 5: Terraform Plan
       - name: Terraform Plan
         working-directory: terraform
         run: terraform plan -var-file="terraform.tfvars" -out=tfplan
 
-      # Step 5: Terraform Apply (optional, uncomment to auto-apply)
+      # Step 6: Terraform Apply
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
         working-directory: terraform
-        run: terraform apply -var-file="terraform.tfvars" -auto-approve tfplan
+        run: terraform apply -auto-approve tfplan
 
-      # Step 6: Terraform Outputs
+      # Step 7: Show Terraform Outputs
       - name: Terraform Outputs
         working-directory: terraform
         run: terraform output
-
