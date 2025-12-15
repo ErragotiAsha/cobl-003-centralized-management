@@ -9,12 +9,12 @@ The solution demonstrates centralized S3 management, cross-account IAM roles, go
 
 Ensure the following are available before implementation:
 
-- AWS Management Account
-- AWS Member Accounts
-- AWS CLI installed and configured
-- Terraform installed
-- GitHub Repository
-- IAM permissions to create S3 buckets, IAM roles, and policies
+- AWS Management Account  
+- AWS Member Accounts  
+- AWS CLI installed and configured  
+- Terraform installed  
+- GitHub Repository  
+- IAM permissions to create S3 buckets, IAM roles, and policies  
 
 ---
 
@@ -45,6 +45,7 @@ cobl-003-centralized-management/
 ├── terraform/
 │   ├── provider.tf
 │   ├── variables.tf
+│   ├── terraform.tfvars
 │   ├── outputs.tf
 │   ├── s3-central-bucket.tf
 │   ├── iam-member-role.tf
@@ -54,3 +55,4 @@ cobl-003-centralized-management/
 └── README.md
 
 Implementation of COBL-003 AWS Cloud Operations Competency: Centralized S3, IAM Roles, Governance, and Cross-Account Access.
+
