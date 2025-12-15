@@ -1,26 +1,6 @@
-# Terraform files to ignore
-*.tfstate
-*.tfstate.backup
+# Terraform
 .terraform/
-
-# Crash logs
-crash.log
-
-# CLI override files
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
-
-# Local environment variables
-*.tfvars
-*.tfvars.json
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-
-# OS files
-.DS_Store
-Thumbs.db
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
+tfplan
